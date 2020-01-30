@@ -1,11 +1,11 @@
 <?php
  $domOBJ = new DOMDocument();
- $domOBJ->load("https://coronel-app-xml.herokuapp.com/rss.php");//XML page URL
+ $domOBJ->load("https://xmlactivity.herokuapp.com/rss.php");//XML page URL
  
- $content = $domOBJ->getElementsByTagName("track");
+ $content = $domOBJ->getElementsByTagName("article");
 ?>
 
- <h1>Tracks</h1>
+ <h1Articles</h1>
 
  <?php
  foreach( $content as $data )
@@ -13,15 +13,15 @@
      <div class="border">
      <?php
      $title = $data->getElementsByTagName("title")->item(0)->nodeValue;
-     $artist = $data->getElementsByTagName("artist")->item(0)->nodeValue;
-     $genre = $data->getElementsByTagName("genre")->item(0)->nodeValue;
-     $album = $data->getElementsByTagName("album")->item(0)->nodeValue;
+     $description = $data->getElementsByTagName("description")->item(0)->nodeValue;
+     $author = $data->getElementsByTagName("author")->item(0)->nodeValue;
+     $created = $data->getElementsByTagName("created")->item(0)->nodeValue;
      echo "<ul>
             <h2>$title</h2>
               <ul>
-                  <li>Artist: $artist </li>
-                  <li>Genre: $genre </li>
-                  <li>Album: $album </li>
+                  <li>Description: $description </li>
+                  <li>Author: $author </li>
+                  <li>Date Created: $created </li>
               </ul>
           </ul>";
     ?>
